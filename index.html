@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación Académica | Teledetección y Ecosistemas</title>
+    
+    <!-- Tipografías Premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración de Tailwind y Paleta de Colores -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'teal-desaturated': '#345959',
+                        'teal-emerald': '#04BF8A',
+                        'green-rich': '#107357',
+                        'green-forest': '#08401B',
+                        'off-white': '#EFF2EB',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Estilos Personalizados -->
+    <style>
+        body {
+            background-color: #08401B;
+            color: #EFF2EB;
+            overflow-x: hidden;
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #08401B; }
+        ::-webkit-scrollbar-thumb { background: #107357; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #04BF8A; }
+
+        /* Reveal on Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.2s; }
+        .reveal-delay-2 { transition-delay: 0.4s; }
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Ambient Orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(140px);
+            z-index: -1;
+            animation: float 25s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(40px, -60px); }
+        }
+
+        /* Hairlines */
+        .hairline-h { height: 1px; background: linear-gradient(90deg, rgba(4,191,138,0), rgba(4,191,138,0.4), rgba(4,191,138,0)); }
+    </style>
+</head>
+<body class="antialiased selection:bg-teal-emerald selection:text-green-forest relative">
+
+    <!-- Ambient Background -->
+    <div class="orb bg-teal-emerald/20 w-[600px] h-[600px] top-[-100px] left-[-200px]"></div>
+    <div class="orb bg-green-rich/30 w-[800px] h-[800px] top-[40vh] right-[-300px]" style="animation-delay: -5s;"></div>
+    <div class="orb bg-teal-desaturated/30 w-[700px] h-[700px] bottom-0 left-[10vw]" style="animation-delay: -10s;"></div>
+
+    <!-- Barra de Navegación -->
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b-0 py-4 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="font-display font-bold text-xs tracking-[0.2em] uppercase text-off-white/80">
+                Análisis <span class="text-teal-emerald">Teledetección</span>
+            </div>
+            <div class="hidden lg:flex gap-6 font-sans text-[10px] tracking-widest uppercase text-off-white/60">
+                <a href="#que-se-hizo" class="hover:text-teal-emerald transition-colors">¿Qué se hizo?</a>
+                <a href="#metodologia" class="hover:text-teal-emerald transition-colors">Metodología</a>
+                <a href="#indicadores" class="hover:text-teal-emerald transition-colors">Indicadores</a>
+                <a href="#sensores" class="hover:text-teal-emerald transition-colors">Sensores</a>
+                <a href="#hallazgos" class="hover:text-teal-emerald transition-colors">Hallazgos</a>
+                <a href="#discusion" class="hover:text-teal-emerald transition-colors">Discusión</a>
+                <a href="#conclusiones" class="hover:text-teal-emerald transition-colors">Conclusiones</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- DIAPOSITIVA 1: PORTADA HERO -->
+    <section class="relative min-h-screen flex flex-col justify-center px-6 pt-20">
+        <div class="max-w-5xl mx-auto text-center reveal active">
+            <div class="inline-block border border-teal-emerald/30 rounded-full px-6 py-2 mb-8">
+                <p class="font-sans text-teal-emerald tracking-[0.2em] uppercase text-xs">Estudio de Mongolia Interior (1998 - 2020)</p>
+            </div>
+            <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] mb-8">
+                Resistencia, Resiliencia <br> y Tiempo de <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-emerald to-off-white">Recuperación</span>
+            </h1>
+            <p class="font-sans font-light text-xl md:text-2xl text-off-white/70 max-w-4xl mx-auto leading-relaxed mb-12">
+                Análisis de pastizales en respuesta a patrones de sequía en Mongolia Interior mediante teledetección multiescalar.
+            </p>
+            
+            <div class="glass-panel inline-flex items-center gap-4 px-8 py-4 rounded-full border border-teal-emerald/20 hover:bg-white/5 transition-all">
+                <div class="w-3 h-3 bg-teal-emerald rounded-full animate-pulse"></div>
+                <a href="#enlace-video" class="font-display font-bold text-sm tracking-widest uppercase text-off-white">Ver Grabación de la Presentación</a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-teal-emerald/50">
+            ↓
+        </div>
+    </section>
+
+    <!-- DIAPOSITIVA 2: ¿QUÉ SE HIZO? -->
+    <section id="que-se-hizo" class="py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <p class="text-teal-emerald tracking-[0.2em] uppercase text-xs font-bold mb-4">El Objetivo de la Investigación</p>
+                    <h2 class="font-display text-5xl font-light mb-8">¿Qué se <span class="font-bold text-teal-emerald">hizo?</span></h2>
+                    <p class="font-sans text-lg text-off-white/80 leading-relaxed font-light mb-6">
+                        El objetivo principal fue investigar la estabilidad de los pastizales de Mongolia Interior, China, analizando su respuesta ante diferentes patrones de sequía entre los años 1998 y 2020.
+                    </p>
+                    <p class="font-sans text-lg text-off-white/80 leading-relaxed font-light">
+                        Se cuantificó la estabilidad de tres ecosistemas principales:
+                    </p>
+                </div>
+                
+                <div class="glass-panel p-10 rounded-3xl reveal reveal-delay-1 relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 text-[10rem] font-display font-bold text-white/5 leading-none">01</div>
+                    <ul class="space-y-6 font-sans text-sm text-off-white/80 relative z-10">
+                        <li class="border-b border-white/10 pb-4">
+                            <h4 class="text-xl font-display font-bold text-white mb-2">1. Tipos de Pastizales</h4>
+                            <p>Estepa de pradera templada (TMS), estepa típica templada (TTS) y estepa desértica templada (TDS).</p>
+                        </li>
+                        <li class="border-b border-white/10 pb-4">
+                            <h4 class="text-xl font-display font-bold text-white mb-2">2. Patrones de Sequía</h4>
+                            <p>Se categorizaron <strong>seis patrones distintos</strong>, combinando por primera vez tanto la intensidad como la duración de los eventos (desde cortas/leves hasta extremas/prolongadas).</p>
+                        </li>
+                        <li>
+                            <h4 class="text-xl font-display font-bold text-white mb-2">3. Evaluación de Estabilidad</h4>
+                            <p>Se evaluaron tres indicadores críticos: resistencia, resiliencia y tiempo de recuperación para ver cómo varían según el ecosistema y el rigor del evento.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="hairline-h max-w-7xl mx-auto"></div>
+
+    <!-- DIAPOSITIVA 3: ¿CÓMO SE HIZO? (METODOLOGÍA) -->
+    <section id="metodologia" class="py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <p class="text-teal-emerald tracking-widest uppercase text-xs mb-4 font-bold">Metodología y Teledetección</p>
+                <h2 class="font-display text-4xl md:text-6xl font-light">¿Cómo se <span class="font-bold text-teal-desaturated">hizo?</span></h2>
+                <p class="mt-6 font-sans text-off-white/60 max-w-2xl mx-auto">Integración de datos satelitales y meteorológicos de alta resolución para modelar la dinámica de los pastizales.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal reveal-delay-1">
+                <!-- Data Card 1 -->
+                <div class="glass-panel p-8 rounded-2xl border-t-4 border-t-teal-desaturated hover:-translate-y-2 transition-transform">
+                    <h3 class="font-display text-xl font-bold mb-4">Detección de Sequías (SPEI)</h3>
+                    <p class="font-sans text-sm text-off-white/70 leading-relaxed">
+                        Se utilizó el <strong>Índice de Precipitación-Evapotranspiración Estandarizado (SPEI)</strong> mensual. Se calculó a partir de datos de precipitación y evapotranspiración potencial con una resolución espacial de aproximadamente 1 km.
+                    </p>
+                </div>
+
+                <!-- Data Card 2 -->
+                <div class="glass-panel p-8 rounded-2xl border-t-4 border-t-teal-emerald hover:-translate-y-2 transition-transform">
+                    <h3 class="font-display text-xl font-bold mb-4">Monitoreo de Vegetación (NDVI)</h3>
+                    <p class="font-sans text-sm text-off-white/70 leading-relaxed">
+                        Se empleó el sensor <strong>VEGETATION a bordo del satélite SPOT-4</strong> para obtener series temporales del Índice de Vegetación (NDVI). Se aplicó <em>"detrending"</em> para eliminar sesgos estacionales y aislar las anomalías climáticas.
+                    </p>
+                </div>
+
+                <!-- Data Card 3 -->
+                <div class="glass-panel p-8 rounded-2xl border-t-4 border-t-green-rich hover:-translate-y-2 transition-transform">
+                    <h3 class="font-display text-xl font-bold mb-4">Clasificación de Ecosistemas</h3>
+                    <p class="font-sans text-sm text-off-white/70 leading-relaxed">
+                        A través del algoritmo de Machine Learning <strong>Random Forest</strong>, aplicado sobre imágenes <strong>Sentinel-2</strong>, se delimitó con precisión el área correspondiente a cada tipo de estepa.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIAPOSITIVA 4: CÁLCULO DE INDICADORES -->
+    <section id="indicadores" class="py-32 bg-white/5 relative z-10 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-display text-4xl md:text-5xl font-bold mb-16 text-center reveal">Cálculo de <span class="text-teal-emerald font-light">Indicadores</span></h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 reveal reveal-delay-1">
+                <div class="bg-black/40 p-8 rounded-2xl border border-white/10 hover:border-teal-emerald/50 transition-colors">
+                    <div class="w-12 h-12 rounded-full border border-teal-emerald/30 flex items-center justify-center mb-6 text-teal-emerald font-display text-xl">Ω</div>
+                    <h4 class="font-display text-2xl text-white mb-3">Resistencia</h4>
+                    <p class="font-sans text-sm text-off-white/60 leading-relaxed">La capacidad del ecosistema para mantener su estado de crecimiento original. Calculada como la diferencia entre las anomalías del NDVI antes y durante el evento de sequía.</p>
+                </div>
+                
+                <div class="bg-black/40 p-8 rounded-2xl border border-white/10 hover:border-teal-emerald/50 transition-colors">
+                    <div class="w-12 h-12 rounded-full border border-teal-emerald/30 flex items-center justify-center mb-6 text-teal-emerald font-display text-xl">Δ</div>
+                    <h4 class="font-display text-2xl text-white mb-3">Resiliencia</h4>
+                    <p class="font-sans text-sm text-off-white/60 leading-relaxed">La capacidad de retornar a la normalidad post-perturbación. Definida por la diferencia entre el NDVI posterior a la sequía y el valor mínimo registrado durante la misma.</p>
+                </div>
+                
+                <div class="bg-black/40 p-8 rounded-2xl border border-white/10 hover:border-teal-emerald/50 transition-colors">
+                    <div class="w-12 h-12 rounded-full border border-teal-emerald/30 flex items-center justify-center mb-6 text-teal-emerald font-display text-xl">T</div>
+                    <h4 class="font-display text-2xl text-white mb-3">Tiempo de Recuperación</h4>
+                    <p class="font-sans text-sm text-off-white/60 leading-relaxed">El tiempo (en meses) requerido para que la vegetación alcance nuevamente su promedio histórico para ese mes específico.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIAPOSITIVA EXTRA: EL SENSOR SPOT-VGT Y SUS CARACTERÍSTICAS -->
+    <section id="sensores" class="py-32 bg-black/40 relative z-10 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <p class="text-teal-emerald tracking-widest uppercase text-xs mb-4 font-bold">Tecnología Satelital</p>
+                <h2 class="font-display text-4xl md:text-5xl font-light">El Sensor <span class="font-bold text-teal-emerald">VEGETATION</span></h2>
+                <p class="mt-6 font-sans text-off-white/70 max-w-4xl mx-auto leading-relaxed">
+                    El estudio sobre la estabilidad de los pastizales en Mongolia Interior se apoyó principalmente en el sensor VEGETATION a bordo del satélite SPOT-4 (dataset SPOT-VGT), el cual presenta una serie de ventajas operativas y limitaciones técnicas específicas para este tipo de investigación climática de largo plazo.
+                </p>
+            </div>
+
+            <!-- Características del Sensor -->
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-20 reveal reveal-delay-1">
+                <div class="glass-panel p-6 rounded-2xl border-t-2 border-teal-emerald">
+                    <h4 class="text-[10px] font-bold uppercase tracking-widest text-teal-emerald mb-2">Sensor Principal</h4>
+                    <p class="font-display font-bold text-white text-lg">VEGETATION (SPOT-VGT)</p>
+                    <p class="font-sans text-xs text-off-white/60 mt-2">A bordo del satélite SPOT-4.</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl border-t-2 border-teal-emerald">
+                    <h4 class="text-[10px] font-bold uppercase tracking-widest text-teal-emerald mb-2">Resolución Espacial</h4>
+                    <p class="font-display font-bold text-white text-lg">Aprox. 1 km</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl border-t-2 border-teal-emerald">
+                    <h4 class="text-[10px] font-bold uppercase tracking-widest text-teal-emerald mb-2">Resolución Temporal</h4>
+                    <p class="font-display font-bold text-white text-lg">Escala mensual</p>
+                    <p class="font-sans text-xs text-off-white/60 mt-2">Periodo de 22 años (1998–2020).</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl border-t-2 border-teal-emerald">
+                    <h4 class="text-[10px] font-bold uppercase tracking-widest text-teal-emerald mb-2">Bandas Espectrales</h4>
+                    <p class="font-display font-bold text-white text-lg">Rojo y NIR</p>
+                    <p class="font-sans text-xs text-off-white/60 mt-2">Para derivar el Índice NDVI.</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl border-t-2 border-teal-emerald">
+                    <h4 class="text-[10px] font-bold uppercase tracking-widest text-teal-emerald mb-2">Plataforma Compl.</h4>
+                    <p class="font-display font-bold text-white text-lg">Sentinel-2</p>
+                    <p class="font-sans text-xs text-off-white/60 mt-2">Clasificación precisa (Random Forest).</p>
+                </div>
+            </div>
+
+            <!-- Ventajas vs Limitaciones -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 reveal reveal-delay-2">
+                <!-- Ventajas -->
+                <div class="glass-panel p-10 rounded-3xl">
+                    <h3 class="font-display text-2xl text-white font-bold mb-8 border-b border-white/10 pb-4">Ventajas del Estudio frente al Sensor</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="text-teal-emerald mt-1 font-bold text-lg">✓</div>
+                            <div>
+                                <h4 class="font-bold text-white mb-2">Continuidad Histórica y Seguimiento</h4>
+                                <p class="font-sans text-sm text-off-white/60 leading-relaxed">Su diseño específico para la observación global diaria permitió construir una serie temporal sólida de 22 años para monitorear condiciones biofísicas.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="text-teal-emerald mt-1 font-bold text-lg">✓</div>
+                            <div>
+                                <h4 class="font-bold text-white mb-2">Estandarización de Datos</h4>
+                                <p class="font-sans text-sm text-off-white/60 leading-relaxed">La resolución de 1 km permitió una integración coherente con datos meteorológicos (precipitación y evapotranspiración) y el índice SPEI en un análisis pixel a pixel.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="text-teal-emerald mt-1 font-bold text-lg">✓</div>
+                            <div>
+                                <h4 class="font-bold text-white mb-2">Detección de Anomalías Específicas</h4>
+                                <p class="font-sans text-sm text-off-white/60 leading-relaxed">La sensibilidad de las bandas Rojo y NIR permitió capturar la actividad fotosintética y obtener anomalías relativas mediante un "detrending" (eliminando el ruido estacional).</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="text-teal-emerald mt-1 font-bold text-lg">✓</div>
+                            <div>
+                                <h4 class="font-bold text-white mb-2">Capacidad Multifuente</h4>
+                                <p class="font-sans text-sm text-off-white/60 leading-relaxed">El estudio aprovechó la alta resolución de Sentinel-2 para la cartografía inicial, combinándola con la robustez temporal de SPOT-VGT para maximizar la precisión analítica.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Limitaciones -->
+                <div class="glass-panel p-10 rounded-3xl">
+                    <h3 class="font-display text-2xl text-white font-bold mb-8 border-b border-white/10 pb-4">Limitaciones del Estudio frente al Sensor</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="text-red-400 mt-1 font-bold text-lg">✕</div>
+                            <div>
+                                <h4 class="font-bold text-white mb-2">Inadecuación de la Resolución Temporal</h4>
+                                <p class="font-sans text-sm text-off-white/60 leading-relaxed">El uso de datos mensuales es una limitación crítica porque puede sobreestimar el tiempo de recuperación. Capturar la dinámica exacta requeriría datos con resolución diaria.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="text-red-400 mt-1 font-bold text-lg">✕</div>
+                            <div>
+                                <h4 class="font-bold text-white mb-2">Grano Espacial Grueso</h4>
+                                <p class="font-sans text-sm text-off-white/60 leading-relaxed">Aunque 1 km es útil regionalmente, puede ser insuficiente para observar diferencias espaciales detalladas o efectos del microclima en comparación con sensores más resolutivos.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="text-red-400 mt-1 font-bold text-lg">✕</div>
+                            <div>
+                                <h4 class="font-bold text-white mb-2">Incubación de Factores No Detectables</h4>
+                                <p class="font-sans text-sm text-off-white/60 leading-relaxed">El sensor captura la respuesta biológica (NDVI), pero no mide políticas de pastoreo humano, el pH del suelo o el carbono orgánico, los cuales influyen en la estabilidad.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="text-red-400 mt-1 font-bold text-lg">✕</div>
+                            <div>
+                                <h4 class="font-bold text-white mb-2">Suposición de Estaticidad</h4>
+                                <p class="font-sans text-sm text-off-white/60 leading-relaxed">Debido a la escala, se asumió que la distribución de pastizales no cambió en 20 años, ignorando posibles transiciones de cobertura no detectables a baja resolución en etapas iniciales.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIAPOSITIVA 5 Y 6: HALLAZGOS PRINCIPALES Y FIGURA 4 -->
+    <section id="hallazgos" class="py-32 bg-black/20 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <p class="text-teal-emerald tracking-widest uppercase text-xs mb-4 font-bold">Resultados del Análisis</p>
+                <h2 class="font-display text-4xl md:text-5xl font-light">Hallazgos <span class="font-bold text-teal-emerald">Principales</span></h2>
+            </div>
+
+            <!-- Figura 4 del Artículo -->
+            <div class="glass-panel p-4 md:p-8 rounded-3xl mb-20 reveal reveal-delay-1 flex flex-col items-center bg-gradient-to-b from-white/5 to-transparent relative overflow-hidden">
+                <!-- Orbe de brillo detrás de la imagen -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-teal-emerald/20 blur-[100px] rounded-full z-0 pointer-events-none"></div>
+                
+                <img src="Figure_4_optimized.webp" alt="Figura 4 - Resistencia, Resiliencia y Tiempo de Recuperación" class="w-full max-w-4xl rounded-xl shadow-[0_0_50px_rgba(4,191,138,0.2)] mb-6 border border-white/10 relative z-10 hover:scale-[1.02] transition-transform duration-700 cursor-zoom-in">
+                
+                <p class="font-sans text-xs text-off-white/60 text-center max-w-2xl relative z-10">
+                    <span class="text-white font-bold">Figura 4.</span> Comparación de los indicadores de estabilidad (resistencia, resiliencia y tiempo de recuperación) en los diferentes tipos de pastizales (TMS, TTS y TDS).<br>
+                    <em class="text-teal-emerald/80 mt-1 block">Fuente: Yu, H., et al. (2025). Remote Sensing, 17, 559.</em>
+                </p>
+            </div>
+
+            <!-- Detalles de Hallazgos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 reveal reveal-delay-2">
+                <div class="space-y-6">
+                    <div class="border-l-2 border-teal-emerald pl-6">
+                        <h4 class="font-display text-2xl text-white font-bold mb-2">Estepa Desértica (TDS)</h4>
+                        <p class="font-sans text-sm text-off-white/70">Posee la <strong>mayor resistencia</strong> pero la <strong>menor resiliencia</strong> y el mayor tiempo de recuperación frente a los eventos de sequía.</p>
+                    </div>
+                    <div class="border-l-2 border-green-rich pl-6">
+                        <h4 class="font-display text-2xl text-white font-bold mb-2">Estepa de Pradera (TMS)</h4>
+                        <p class="font-sans text-sm text-off-white/70">Es la <strong>más resiliente</strong> y la que se recupera más rápido (2.6 meses de media), aunque es la ecosistema menos resistente al impacto inicial.</p>
+                    </div>
+                </div>
+                <div class="glass-panel p-8 rounded-2xl flex items-center justify-center text-center">
+                    <div>
+                        <div class="text-5xl font-display font-bold text-teal-emerald mb-2">5 <span class="text-2xl font-light text-off-white">meses</span></div>
+                        <h4 class="font-display text-xl text-white mb-2">Capacidad General de Recuperación</h4>
+                        <p class="font-sans text-sm text-off-white/60">La gran mayoría de los pastizales analizados logran volver a su estado normal de crecimiento en un periodo máximo de cinco meses.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIAPOSITIVA 7: EL TRADE-OFF Y FIGURA 7 -->
+    <section class="py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="glass-panel p-10 md:p-16 rounded-3xl reveal flex flex-col items-center border-t-4 border-teal-emerald">
+                
+                <div class="text-center max-w-4xl mx-auto mb-12">
+                    <h2 class="font-display text-4xl font-bold mb-6">El <span class="text-teal-emerald">"Trade-off"</span> Ecológico</h2>
+                    <p class="font-sans text-lg text-off-white/80 leading-relaxed">
+                        El estudio confirmó un contundente <strong>intercambio negativo</strong> entre resistencia y resiliencia.
+                    </p>
+                    <p class="font-sans text-sm text-off-white/60 mt-4 leading-relaxed">
+                        Los ecosistemas que están intrínsecamente adaptados para aguantar la sequía (como la TDS) son inherentemente más lentos para recuperarse una vez que esta termina. No se puede maximizar ambas variables simultáneamente.
+                    </p>
+                </div>
+
+                <!-- Representación visual de barras -->
+                <div class="w-full max-w-3xl space-y-6 mb-16">
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs font-sans tracking-widest uppercase text-teal-emerald">
+                            <span>Resistencia en Estepa Desértica (TDS)</span>
+                            <span>Alta</span>
+                        </div>
+                        <div class="h-2 w-full bg-black/50 rounded-full overflow-hidden">
+                            <div class="bg-teal-emerald w-[90%] h-full"></div>
+                        </div>
+                        <div class="flex justify-between text-xs font-sans tracking-widest uppercase text-off-white/50 pt-2">
+                            <span>Resiliencia en Estepa Desértica (TDS)</span>
+                            <span>Baja</span>
+                        </div>
+                        <div class="h-2 w-full bg-black/50 rounded-full overflow-hidden">
+                            <div class="bg-teal-desaturated w-[20%] h-full"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Figura 7 del Artículo -->
+                <div class="w-full bg-gradient-to-b from-white/5 to-transparent p-4 md:p-8 rounded-2xl relative overflow-hidden flex flex-col items-center border border-white/5">
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-teal-emerald/10 blur-[100px] rounded-full z-0 pointer-events-none"></div>
+                    
+                    <img src="Figure_7.webp" alt="Figura 7 - Trade-off entre resistencia y resiliencia" class="w-full max-w-4xl rounded-xl shadow-[0_0_40px_rgba(4,191,138,0.15)] mb-6 border border-white/10 relative z-10 hover:scale-[1.02] transition-transform duration-700 cursor-zoom-in">
+                    
+                    <p class="font-sans text-xs text-off-white/60 text-center max-w-2xl relative z-10">
+                        <span class="text-white font-bold">Figura 7.</span> Representación del intercambio negativo (Trade-off) entre la resistencia y la resiliencia en los ecosistemas de pastizales analizados.<br>
+                        <em class="text-teal-emerald/80 mt-1 block">Fuente: Yu, H., et al. (2025). Remote Sensing, 17, 559.</em>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- DIAPOSITIVA 8: DISCUSIÓN Y VULNERABILIDAD -->
+    <section id="discusion" class="py-32 relative z-10 border-t border-white/10 bg-black/30">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-display text-4xl font-bold mb-16 text-center reveal">Discusión y <span class="font-light text-teal-desaturated">Conclusiones</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 reveal reveal-delay-1">
+                <!-- Col 1 -->
+                <div class="space-y-8">
+                    <div>
+                        <h4 class="font-display text-xl text-white font-bold mb-3 flex items-center gap-3">
+                            <span class="w-2 h-2 rounded-full bg-teal-emerald"></span> Estabilidad como Respuesta Dinámica
+                        </h4>
+                        <p class="font-sans text-sm text-off-white/70 leading-relaxed">La discusión resalta que la estabilidad ecosistémica no es una propiedad estática, sino una <strong>respuesta dinámica</strong> vinculada al patrón específico de sequía.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-display text-xl text-white font-bold mb-3 flex items-center gap-3">
+                            <span class="w-2 h-2 rounded-full bg-teal-emerald"></span> Riesgo Severo (TDS) y Eficiencia
+                        </h4>
+                        <p class="font-sans text-sm text-off-white/70 leading-relaxed">El hecho de que la TDS sea altamente resistente se atribuye a sus <strong>especies dominantes adaptadas</strong>, que poseen alta eficiencia en el uso del agua. Sin embargo, su recuperación es lenta debido a limitaciones de nutrientes y agua en climas áridos. El estudio advierte que, si futuros eventos extremos superan el <strong>umbral de resistencia</strong> de la TDS, este ecosistema corre un riesgo severo de colapso por su baja resiliencia.</p>
+                    </div>
+                </div>
+
+                <!-- Col 2 -->
+                <div class="space-y-8">
+                    <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
+                        <h4 class="font-display text-xl text-teal-emerald font-bold mb-4">Factores Ocultos y Modelos Futuros</h4>
+                        <p class="font-sans text-sm text-off-white/70 leading-relaxed mb-4">
+                            Finalmente, los autores señalan que, aunque la teledetección es una herramienta poderosa, existen factores no climáticos que influyen en la recuperación y que deben integrarse en futuros modelos diarios para obtener una precisión aún mayor:
+                        </p>
+                        <ul class="list-disc pl-5 space-y-3 font-sans text-sm text-off-white/60 mb-6">
+                            <li><strong>Actividades humanas:</strong> como el pastoreo excesivo o las políticas de gestión de la tierra.</li>
+                            <li><strong>Propiedades del suelo:</strong> métricas fundamentales como el pH y las reservas de carbono orgánico del subsuelo.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIAPOSITIVA EXTRA: CONCLUSIONES FINALES AMPLIADAS -->
+    <section id="conclusiones" class="py-32 relative z-10 bg-[#021008] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-display text-4xl font-bold mb-16 text-center reveal">Conclusiones <span class="font-light text-teal-emerald">Finales</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal reveal-delay-1">
+                
+                <div class="glass-panel p-8 rounded-2xl border-t-2 border-teal-emerald hover:bg-white/5 transition-colors">
+                    <h3 class="font-display text-xl text-white font-bold mb-3">Variabilidad Espacial de la Sequía</h3>
+                    <p class="font-sans text-sm text-off-white/70 leading-relaxed">
+                        Los pastizales de la estepa desértica (TDS), en el oeste de Mongolia Interior, experimentaron sequías más severas, frecuentes e intensas en comparación con la estepa de pradera (TMS) y la estepa típica (TTS) situadas en el este y centro. Además, la TDS registró la mayor frecuencia de eventos de sequía extrema prolongada.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-8 rounded-2xl border-t-2 border-teal-emerald hover:bg-white/5 transition-colors">
+                    <h3 class="font-display text-xl text-white font-bold mb-3">Jerarquía de la Estabilidad</h3>
+                    <ul class="font-sans text-sm text-off-white/70 space-y-3 leading-relaxed">
+                        <li><strong>Resistencia:</strong> La TDS mostró la mayor capacidad para mantener su crecimiento original (TDS > TTS > TMS).</li>
+                        <li><strong>Resiliencia:</strong> La TMS demostró la mayor capacidad para retornar a su estado normal tras el evento (TMS > TTS > TDS).</li>
+                    </ul>
+                </div>
+
+                <div class="glass-panel p-8 rounded-2xl border-t-2 border-teal-emerald hover:bg-white/5 transition-colors">
+                    <h3 class="font-display text-xl text-white font-bold mb-3">Tiempo de Recuperación</h3>
+                    <p class="font-sans text-sm text-off-white/70 leading-relaxed">
+                        La TMS es la que se recupera más rápido (mediana de 2.6 meses), mientras que la TDS es la que requiere más tiempo (mediana de 3.7 meses).
+                    </p>
+                </div>
+
+                <div class="glass-panel p-8 rounded-2xl border-t-2 border-teal-emerald lg:col-span-2 hover:bg-white/5 transition-colors">
+                    <h3 class="font-display text-xl text-white font-bold mb-3">Compromiso entre Resistencia y Resiliencia</h3>
+                    <p class="font-sans text-sm text-off-white/70 leading-relaxed">
+                        Se confirmó un trade-off (compensación) entre estos dos indicadores: los ecosistemas con baja resistencia tienden a poseer una alta resiliencia (como la TMS), mientras que aquellos con alta resistencia suelen tener una baja resiliencia (como la TDS).
+                    </p>
+                </div>
+
+                <div class="glass-panel p-8 rounded-2xl border-t-2 border-teal-emerald hover:bg-white/5 transition-colors">
+                    <h3 class="font-display text-xl text-white font-bold mb-3">Capacidad de Recuperación General</h3>
+                    <p class="font-sans text-sm text-off-white/70 leading-relaxed">
+                        A pesar de su vulnerabilidad, los ecosistemas de pastizales demostraron ser capaces de recuperarse rápidamente, generalmente dentro de los cinco meses posteriores al inicio de la sequía.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-8 rounded-2xl border-l-4 border-red-500 bg-red-900/10 lg:col-span-2 hover:bg-red-900/20 transition-colors">
+                    <h3 class="font-display text-xl text-red-400 font-bold mb-3">Necesidad de Protección Prioritaria</h3>
+                    <p class="font-sans text-sm text-off-white/70 leading-relaxed">
+                        Debido a su baja resiliencia, la estepa desértica (TDS) se considera la más vulnerable ante futuros eventos de sequía extrema que podrían superar su umbral de recuperación, por lo que requiere mayores esfuerzos de conservación.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-8 rounded-2xl border-t-2 border-teal-desaturated hover:bg-white/5 transition-colors">
+                    <h3 class="font-display text-xl text-white font-bold mb-3">Direcciones Futuras</h3>
+                    <p class="font-sans text-sm text-off-white/70 leading-relaxed">
+                        Los autores sugieren que investigaciones futuras utilicen datos de mayor resolución temporal (diarios) para detectar diferencias más finas en los tiempos de recuperación y profundizar en cómo las condiciones meteorológicas posteriores a la sequía influyen en dicho proceso.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- DIAPOSITIVA 9: ENLACE VIDEO Y CIERRE -->
+    <section id="enlace-video" class="py-32 bg-[#031c0a] relative z-10 border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal">
+            <div class="w-20 h-20 mx-auto bg-teal-emerald/10 rounded-full flex items-center justify-center mb-8 border border-teal-emerald/30">
+                <svg class="w-8 h-8 text-teal-emerald ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <h2 class="font-display text-4xl font-light mb-6">Grabación de la Presentación</h2>
+            <p class="font-sans text-off-white/60 mb-10 text-sm">
+                A continuación se encuentra el enlace al recurso audiovisual con la sustentación oral de esta investigación, cumpliendo con los requisitos de la guía de aprendizaje.
+            </p>
+            
+            <a href="URL_DEL_VIDEO_AQUI" target="_blank" class="inline-block bg-teal-emerald text-green-forest font-bold font-display tracking-widest uppercase px-10 py-4 rounded-full hover:bg-white transition-colors duration-300">
+                [ Insertar Link del Video Aquí ]
+            </a>
+            
+            <div class="mt-32 pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs font-sans text-off-white/30 uppercase tracking-[0.2em]">
+                <span>Curso de Teledetección</span>
+                <span class="mt-4 md:mt-0">Fase Analítica - 2026</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script de Animaciones (Intersection Observer) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+
+            reveals.forEach(reveal => revealObserver.observe(reveal));
+
+            // Navbar Background blur on scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-green-forest/90', 'shadow-2xl');
+                    navbar.classList.remove('py-4');
+                    navbar.classList.add('py-2');
+                } else {
+                    navbar.classList.remove('bg-green-forest/90', 'shadow-2xl');
+                    navbar.classList.add('py-4');
+                    navbar.classList.remove('py-2');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
